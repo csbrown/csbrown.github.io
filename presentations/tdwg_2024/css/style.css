@@ -1,0 +1,163 @@
+.hidden {
+  visibility: hidden;
+}
+.crossout {
+  position: relative;
+  display: inline-block;
+}
+.crossout:after,
+.crossout:before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: red;
+}
+.crossout:before {
+  transform: rotate(20deg);
+}
+.crossout:after {
+  transform: rotate(-20deg);
+}
+.pre-circled {
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+.circled {
+  border-radius: 50%;
+  border: 2px solid red;
+}
+.sci-name {
+  font-style: italic;
+}
+canvas {
+    display: inline-block;
+}
+.left-mj {
+    width: 0;
+}
+.reveal h3, .reveal h4, .reveal h2 {
+    text-transform: none;
+}
+.lefty {
+    height: 60vh;
+    float: left;
+    width: 45%;
+    display: inline-block;
+}
+.righty {
+    height: 60vh;
+    float: right;
+    width: 45%;
+    display: inline-block;
+}
+.leftyrighty {
+  display: flex;
+  justify-content: space-between;
+}
+.full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+section {
+    /* height: 100vh !important; */
+}
+.svg-container {
+  display: inline-block;
+  position: relative;
+  height: 60vh;
+  width: 60vh;  
+  /*padding-bottom: 70vh; /* aspect ratio */
+  vertical-align: top;
+  overflow: hidden;
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/*.footnotey {
+ position: absolute;
+ bottom: 1em;
+ font-size: 12pt !important;
+ vertical-align: bottom !important;
+}*/
+.footnotey {
+ text-align: left;
+ position: fixed;
+ bottom: 1em;
+ font-size: 12pt !important;
+}
+@media print {
+  .footnotey {
+    position: static;
+  }
+}
+
+.small {
+ font-size: 12pt !important;
+}
+
+.fsimg {
+ max-height: 100vh !important;
+ max-width: 100vw !important;
+}
+
+.hsimg {
+ max-height: 100vh !important;
+ width: 40vw !important;
+}
+
+.hvsimg {
+ max-height: 60vh !important;
+ max-width: 90vw !important;
+}
+
+.middly {
+ height: 80%;
+}
+
+.middlyfooty {
+ max-height: 60%;
+}
+
+.regular {
+ font-size: 28pt !important;
+}
+
+.bottomy {
+  position: absolute;
+  bottom: 0;
+}
+.texty {
+  vertical-align: top;
+  text-align: left;
+}
+.centery {
+  text-align: center;
+}
+section {
+    height: 85vh;
+}
+.reveal h5 {
+  font-size: 0.83em;
+}
+.reveal h4 {
+  font-size: 3.8vw;
+}
+
+.important {
+  font-style: italic;
+  font-weight: bold;
+  color: red;
+}

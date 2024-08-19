@@ -1,0 +1,64 @@
+
+Outline
+
+I) Define Invasiveness
+  A) Is he really going to define "invasive"?  yes he is
+    1) Alien
+      a) We have this down.  An Occurrence record has a time, a place and a taxon.  This taxon wasn't here last year, it is here this year, == Alien.
+    2) Impact
+      - This is difficult and covers a massive range of topics: economic, ecological, geo/hydrological, epidemiological...
+         None of these are easy to do in DwC, some are *possible*, some might be easy to do with a little nudging here and there...
+         So, this talk is to illustrate these with some examples, talk about possible DwC pathways for each one, and just to get folks thinking about the problem.
+I.5) Impact: why do we care?
+  A) Measuring impact is a crucial ingredient for management planning
+    - Cattle Egret (Bubulcus) https://www.iucngisd.org/gisd/speciesname/Bubulcus+ibis
+      - invasive in Hawaii
+      - rest of U.S. Alien but "seem to have little or no impact"
+        - actually *protected* Migratory Bird Treaty Act of 1918 https://www.ecfr.gov/current/title-50/chapter-I/subchapter-B/part-10/subpart-B/section-10.13
+        - existing impact data is not easy to compile 
+          - economic impact: https://www.mcagov.org/DocumentCenter/View/1799/CattleEgrets_Gustine-2018 
+          - ecological impact: https://tricolor.ice.ucdavis.edu/sites/g/files/dgvnsk3096/files/inline-files/Meese%20CFG%2098%281%29.pdf
+    - Barred Owls vs Northern Spotted Owls https://www.fws.gov/project/barred-owl-management
+      - Currently a plan in public comment phase to cull ~half a million barred owls in the western US.  Should we invest money into this?
+    - Hydrilla risk assessment: https://www.aphis.usda.gov/sites/default/files/hydrilla-verticillata.pdf 
+II) Impact: why DwC?
+  - EDRR
+  - "Invasive" implies impact is known
+    - Risk Assessment
+      - Already invasive somewhere else
+  - What if impact *ISN'T* known
+    - EDDMaps, IMapInvasives, SIREN primarily service "known" invasives
+    - There is not, to my knowledge, currently a simple technical pathway to report this data.
+      1) Impact is noticed anecdotally
+      2) Impact pathway is hypothesized and studied in a bespoke study with manual painstaking data collection
+        - In what format is this data stored/shared?
+      3) Potential for impact can then be inferred from presence data and impact pathways
+III) Ecological
+  - WNS https://whispers.usgs.gov/home
+    - associatedTaxa
+    - associatedOccurrences
+    - ResourceRelationship
+  - crowding out/out-competing
+    - presence/absence data only?
+  - direct 
+    - (lionfish https://oceanservice.noaa.gov/facts/lionfish.html)
+    - pythons
+      - stomach contents https://data.usgs.gov/datacatalog/data/USGS:630e7961d34e36012ef9f696
+  - indirect
+    - Hydrilla lowers dissolved oxygen concentrations in water
+IV) Economic
+  - FL aquatic plants, Water lettuce etc https://plants.ifas.ufl.edu/manage/why-manage-plants/non-native-invasive-plants/
+  - Hydrilla interferes with recreational use of water bodies
+  - quagga/zebra mussels https://www.ukiahdailyjournal.com/wp-content/uploads/2021/01/FISHING.jpeg
+V) Geo/hydrological
+  - Also FL aquatic plants
+    - Hydrilla clogs waterways
+  - Sporobolus alterniflorus
+  - Ammophila arenaria
+  - GeoSciML: https://www.ogc.org/standard/geosciml/
+VI) Epidemiological
+  - a majority of emerging infectious diseases originate in wildlife https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5960580/
+  - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7580882/
+  - Mosquitos + Dengue https://en.wikipedia.org/wiki/Aedes_aegypti https://en.wikipedia.org/wiki/Aedes_albopictus
+  - co-introduction Python lung parasite in FL
+VII) Conclusions

@@ -1,0 +1,710 @@
+<!doctype html>
+<html>  
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>On the need for variables to represent organism interaction with the local environment</title>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/white.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <script src="lib/js/jquery-3.4.1.min.js"></script>
+  <script src="js/reveal.helpers.js"></script>
+  <script src="/javascripts/d3.v5.min.js"></script>
+  <script src="/javascripts/math.min.js"></script>
+  <script src="js/signature_pad.min.js"></script>
+
+  </head>
+  <body>
+
+    <canvas id="drawer" class="full" style="z-index: 0;"></canvas>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <div style="height: 20vh;"></div>
+          <h2> On the need for variables to represent organism interaction with the local environment </h2> 
+          <p> CScott Brown </p>
+
+        </section><section>
+
+          <div> <h4> Preliminaries: Invasive Species </h4> </div>
+
+          <div class="texty">
+            <a href="https://www.invasivespeciesinfo.gov/executive-order-13112">Executive Order 13112</a>
+            <ol>
+              <li class="fragment">
+                Alien
+                <ul>
+                  <li class="fragment">
+                    <span style="color:green">✓</span> An Occurrence record has a time, a place and a taxon.
+                  </li>
+                </ul>
+              </li>
+              <li class="fragment">
+                Introduction causes or is likely to cause economic harm, environmental harm or harm to human health.                 
+                <ul>
+                  <li class="fragment">
+                    I.e. a negative <span class="important">"impact"</span>                  
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            
+          </div>
+
+          <aside class="notes">
+            
+          </aside>
+        
+        </section><section>
+          <div> <h4> Impact: Why do we care? </h4> </div>
+          <div>
+            <img class="hvsimg" src="static/kudzu.jpg">
+            <div class="small">
+              Credit: https://upload.wikimedia.org/wikipedia/commons/4/4c/Kudzu_on_trees_in_Atlanta%2C_Georgia.jpg
+            </div>
+          </div>
+        </section><section>
+          <div> <h4> Impact: Why do we care? </h4> </div>
+          <div>
+            <img class="hvsimg" src="static/quagga+mussel+time-line.JPG">
+            <div class="small">
+              Credit: https://www.flatheadlakers.org/invasive-mussels
+            </div>
+          </div>
+        </section><section>
+          <div> <h4> Impact: Why do we care? </h4> </div>
+          <div>
+            <img class="hvsimg" src="static/hydrilla_canal.webp">
+            <div class="small">
+              Credit: https://www.nepm.org/2023-08-17/an-invasive-plant-could-choke-out-aquatic-life-in-ct-river-state-feds-are-fighting-back
+            </div>
+          </div>
+        </section><section>
+          <div> <h4> Impact: Why do we care? </h4> </div>
+          <div>
+            <img class="hvsimg" src="static/Angio_cant_LifeCycle_lg.avif">
+            <div class="small">
+              Credit: https://www.cdc.gov/dpdx/angiostrongyliasis_can/modules/Angio_cant_LifeCycle_lg.jpg
+            </div>
+          </div>
+
+        </section><section>
+          <div> <h4> Impact: Why do we care? </h4> </div>
+          <div class="texty">
+            Measuring/predicting <span class="important">impact</span> is a crucial part of IS management:
+            <ul>
+              <li class="texty fragment">
+                Management costs <span>$</span><span>$</span><span>$</span><span>$</span>
+              </li>
+              <li class="texty fragment">
+                <span class="fragment">Evidence of</span> <span class="important">Impact</span> brings the <span>$</span><span>$</span><span>$</span><span>$</span>
+              </li>
+            </ul>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Impact: Show me the <span>$</span><span>$</span><span>$</span><span>$</span> </h4> </div>
+    
+          <div>Example: Cattle Egret <span class="sci-name">Bubulcus</span></div>
+
+          <div class="texty">
+            <img class="hvsimg" src="static/cattle_egret.jpg">
+            <div class="small">
+              Credit: Pedro Lastra, https://commons.wikimedia.org/wiki/File:Cattle_Egret_in_breeding_plumage,_Wakodahatchee_Wetlands.jpg
+            </div>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Impact: Show me the <span>$</span><span>$</span><span>$</span><span>$</span> </h4> </div>
+    
+          <div>Example: Cattle Egret <span class="sci-name">Bubulcus</span></div>
+
+          <div class="texty">
+            <div>
+              <ul>
+                <li> 
+                  Alien <span style="color:green">✓</span>
+                </li>
+              </ul>
+            </div>
+            <img class="hvsimg" src="static/bubulcus_ibis_over_time.gif">
+            <div class="small">
+              Credit: https://www.gbif.org/species/2480830
+            </div>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Impact: Show me the <span>$</span><span>$</span><span>$</span><span>$</span> </h4> </div>
+    
+          <div>Example: Cattle Egret <span class="sci-name">Bubulcus</span></div>
+
+          <div class="texty">
+            <ul>
+              <li> 
+                Little or no funding for control in the contiguous 48 states
+              </li>
+              <li class="fragment"> 
+                "seem to have little or no impact" [1]
+              </li>
+              <li class="fragment">
+                No risk assessment from Fish and Wildlife [2]
+              </li>
+              <li class="fragment">
+                State and federal agencies control these in Hawaii because impact [3]
+              </li>
+            </ul>
+          </div>
+
+          <div class="footnotey">
+            [1] Global Invasive Species Database, https://www.iucngisd.org/gisd/speciesname/Bubulcus+ibis
+            <br>
+            [2] Fish and Wildlife Service, https://www.fws.gov/library/categories/ecological-risk-screening
+            <br>
+            [3] Federal Register, Control Order for Introduced Migratory Bird Species in Hawaii, https://www.federalregister.gov/documents/2017/07/25/2017-15471/migratory-bird-permits-control-order-for-introduced-migratory-bird-species-in-hawaii
+          </div>
+        
+        </section><section>
+
+          <div> <h4> Impact: Show me the <span>$</span><span>$</span><span>$</span><span>$</span> </h4> </div>
+    
+          <div> Example: <span class="sci-name">Hydrilla</span> </div>
+
+          <div>
+            <img class="hvsimg" src="static/hydrilla_canal.webp">
+            <div class="small">
+              Credit: https://www.nepm.org/2023-08-17/an-invasive-plant-could-choke-out-aquatic-life-in-ct-river-state-feds-are-fighting-back
+            </div>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Impact: Show me the <span>$</span><span>$</span><span>$</span><span>$</span> </h4> </div>
+    
+          <div>Example: <span class="sci-name">Hydrilla</span></div>
+
+          <div class="texty fragment">
+            <ul>
+              <li> 
+                Everyone and everyone is scrambling to control or prevent it [1]
+              </li>
+              <li class="fragment"> 
+                Florida alone spends <span>$</span>10M/year [2]
+              </li>
+              <li class="fragment">
+                Studies cast management as a bio-economic modeling problem: "A one-year increase in control yields... a net annual gain of <span>$</span>6.55 million" [3]
+              </li>
+              <li class="fragment">
+                Large negative Ecological, Economic and Hydrological impacts
+              </li>
+            </ul>
+          </div>
+
+          <div class="footnotey">
+            [1] USDA Hydrilla Risk Assessment, https://www.aphis.usda.gov/sites/default/files/hydrilla-verticillata.pdf
+            <br>
+            [2] Hiatt, Drew, Kristina Serbesoff‐King, Deah Lieurance, Doria R. Gordon, and S. Luke Flory. “Allocation of Invasive Plant Management Expenditures for Conservation: Lessons from Florida, USA.” Conservation Science and Practice 1, no. 7 (July 2019): e51. https://doi.org/10.1111/csp2.51.
+            <br>
+            [3] Adams, Damian C., and Donna J. Lee. “Estimating the Value of Invasive Aquatic Plant Control: A Bioeconomic Analysis of 13 Public Lakes in Florida.” Journal of Agricultural and Applied Economics 39, no. s1 (October 2007): 97–109. https://doi.org/10.1017/S1074070800028972.
+          </div>
+        
+        </section><section>
+
+          <div> <h4> Impact: Why DwC? </h4> </div>
+    
+          <div class="texty">
+            <ul>
+              <li>
+                Half of an <span class="pre-circled">invasive species</span> impact datum is Biodiversity data 
+              </li>
+              <li class="hidden">
+                The other half might be biodiversity data or it might be something else ¯\_(ツ)_/¯
+              </li>
+              <li class="hidden">
+                In what format will data producers share this data?
+              </li>
+            </ul>
+          </div>
+        
+        </section><section>
+
+          <div> <h4> Impact: Why DwC? </h4> </div>
+    
+          <div class="texty">
+            <ul>
+              <li>
+                Half of an <span class="circled">invasive species</span> impact datum is biodiversity data 
+              </li>
+              <li class="fragment">
+                The other half might be biodiversity data or it might be something else ¯\_(ツ)_/¯
+              </li>
+              <li class="fragment">
+                In what format will data producers share this data? <span class="fragment"> Probably not DwCA... </span>
+              </li>
+            </ul>
+          </div>
+        
+        </section><section>
+
+          <div> <h4> Ecological Impact </h4> </div>
+    
+          <div>Example: White-nose syndrome <span class="sci-name">Pseudogymnoascus destructans</span></div>
+
+          <div>
+            <img class="hvsimg" src="static/wns.jpg">
+            <div class="small">
+              Credit: USFWS https://commons.wikimedia.org/wiki/File:Little_Brown_Bat_with_White_Nose_Syndrome_(Greeley_Mine,_cropped).jpg 
+            </div>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Ecological Impact </h4> </div>
+    
+          <div>Example: White-nose syndrome <span class="sci-name">Pseudogymnoascus destructans</span></div>
+
+          <div class="texty fragment">
+            <ul>
+              <li> 
+                Has reduced populations of multiple bat species in US by over 90% [1]
+              </li>
+              <li class="fragment">
+                Recent round of grants worth ~$1M [2]
+              </li>
+            </ul>
+          </div>
+
+          <div class="footnotey">
+            [1] https://www.usgs.gov/news/national-news-release/white-nose-syndrome-killed-over-90-three-north-american-bat-species
+            <br>
+            [2] https://www.nfwf.org/programs/bats-future-fund
+          </div>
+
+        </section><section>
+
+          <div> <h4> Ecological Impact </h4> </div>
+    
+          <div>Example: White-nose syndrome <span class="sci-name">Pseudogymnoascus destructans</span></div>
+
+          <div>
+            <img class="hvsimg" src="static/wns_whispers.png">
+            <div class="small">
+              Credit: https://whispers.usgs.gov/home 
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                about 366 results
+              </li>
+            </ul> 
+          </aside>
+
+        </section><section>
+
+          <div><h4> Ecological Impact: DwC? </h4> </div>
+    
+          <div>Example: White-nose syndrome <span class="sci-name">Pseudogymnoascus destructans</span></div>
+
+          <div>
+            <img class="hvsimg" src="static/wns_dwca.png">
+            <div class="small">
+              Credit: GBIF.org (05 August 2024) GBIF Occurrence Download https://doi.org/10.15468/dl.fcyehr  
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                TODO: summarize table in bullet rhs
+              </li>
+              <li>
+                561 results, about 50 are in the US
+              </li>
+              <li>
+                no RelatedResources              
+              </li>
+            </ul> 
+          </aside>
+
+        </section><section>
+
+          <div><h4> Ecological Impact: DwC? </h4> </div>
+    
+          <div>dwc:ResourceRelationship</div>
+
+          <div class="leftyrighty">
+            <div class="lefty">
+              <img class="hvsimg" src="static/dwc_resourcerelationship.png">
+            </div>
+            <div class="righty">
+              <img class="hvsimg" src="static/dwc_resourcerelationship_fields.png">
+            </div>
+          </div>
+
+          <div class="footnotey">
+            https://dwc.tdwg.org/terms/#resourcerelationship
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                WHERE IS THE RELATED RESOURCE??!!
+              </li>
+            </ul> 
+          </aside>
+          
+        </section><section>
+
+          <div> <h4> Ecological Impact: More Examples </h4> </div>
+    
+          <div class="texty">
+            <ul>
+              <li class="fragment"> 
+                1716 records of Burmese Python (<span class="sci-name">Python bivittatus</span>) stomach contents [1]
+              </li>
+              <li class="fragment">
+                Eastern Barred Owls (<span class="sci-name">Strix varia</span>) hybridizing with Northern Spotted Owls (<span class="sci-name">Strix occidentalis caurina</span>) [2]
+              </li>
+              <li class="fragment">
+                <span class="sci-name">Hydrilla</span> lowers oxygen content of affected water bodies [3]
+              </li>
+            </ul>
+          </div>
+          
+          <div class="footnotey">
+            [1] https://data.usgs.gov/datacatalog/data/USGS:630e7961d34e36012ef9f696
+            <br>
+            [2] https://www.fws.gov/project/barred-owl-management 
+            <br>
+            [3] https://www.aphis.usda.gov/sites/default/files/hydrilla-verticillata.pdf 
+          </div>
+
+        </section><section>
+
+          <div> <h4> Geo/Hydrological Impact </h4> </div>
+    
+          <div>Example: <span class="sci-name">Hydrilla</span></div>
+
+          <div>
+            <img class="hvsimg" src="static/hydrilla_canal.webp">
+            <div class="small">
+              Credit: https://www.nepm.org/2023-08-17/an-invasive-plant-could-choke-out-aquatic-life-in-ct-river-state-feds-are-fighting-back
+            </div>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Geo/Hydrological Impact </h4> </div>
+    
+          <div>Example: <span class="sci-name">Hydrilla</span></div>
+
+          <div class="texty">
+            <ul>
+              <li class="fragment"> 
+                Can dramatically reduce flow-rates in waterways [1]
+              </li>
+              <li class="fragment"> 
+                How do we science this problem?
+                <ol>
+                  <li class="fragment">
+                    Document presence/absence of <span class="sci-name">Hydrilla</span>
+                    <ul>
+                      <li>
+                        DwC <span style="color:green">✓</span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="fragment">
+                    Compare expected vs. actual measured flow rates
+                    <ul>
+                      <li class="fragment">
+                        This data is non-trivial
+                      </li>
+                      <li class="fragment">
+                        There exist data standards for Geological and Hydrological data!
+                        <ul>
+                          <li>
+                            GeoSciML [2]
+                          </li>
+                          <li>
+                            MCH DBMS [3]
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footnotey">
+            [1] Jenner, Brittany. "Hydraulic consequences of invasive Hydrilla (submerged aquatic vegetation) in tidal channels: Implications for wetland maintenance." University of Maryland Undergraduate Thesis, College Park, Maryland (2010).
+            <br>
+            [2] http://geosciml.org/
+            <br>
+            [3] https://community.wmo.int/en/mch-meteorology-climatology-and-hydrology-database-management-system 
+          </div>
+
+        </section><section>
+
+          <div><h4> Geo/Hydrological Impact: DwC? </h4> </div>
+          
+          <div style="margin-top:10px">dwc:Hydrology?</div>
+
+        </section><section>
+
+          <div><h4> Geo/Hydrological Impact: DwC? </h4> </div>
+          
+          <div style="margin-top:10px"><span class="crossout">dwc:Hydrology?</span></div>
+    
+        </section><section>
+
+          <div><h4> Geo/Hydrological Impact: DwC? </h4> </div>
+    
+          <div>dwc:ResourceRelationship?</div>
+
+          <div class="leftyrighty">
+            <div class="lefty">
+              <img class="hvsimg" src="static/dwc_resourcerelationship.png">
+            </div>
+            <div class="righty">
+              <img class="hvsimg" src="static/dwc_resourcerelationship_fields.png">
+            </div>
+          </div>
+
+          <div class="footnotey">
+            https://dwc.tdwg.org/terms/#resourcerelationship
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                WHERE IS THE RELATED RESOURCE??!!
+              </li>
+            </ul> 
+          </aside>
+          
+
+
+
+
+
+
+        </section><section>
+
+          <div> <h4> Economic Impact </h4> </div>
+    
+          <div>Example: <span class="sci-name">Hydrilla</span></div>
+
+          <div>
+            <img class="hvsimg" src="static/hydrilla_canal.webp">
+            <div class="small">
+              Credit: https://www.nepm.org/2023-08-17/an-invasive-plant-could-choke-out-aquatic-life-in-ct-river-state-feds-are-fighting-back
+            </div>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Economic Impact </h4> </div>
+    
+          <div>Example: <span class="sci-name">Hydrilla</span></div>
+
+          <div class="texty">
+            <ul>
+              <li class="fragment"> 
+                Impedes recreational use of water bodies [1]
+              </li>
+              <li class="fragment"> 
+                How do we science this problem?
+                <ol>
+                  <li class="fragment">
+                    Document presence/absence of <span class="sci-name">Hydrilla</span>
+                    <ul>
+                      <li>
+                        DwC <span style="color:green">✓</span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="fragment">
+                    Compare expected vs. actual use of water body for recreational fishing
+                    <ul>
+                      <li class="fragment">
+                        This data is non-trivial
+                      </li>
+                      <li class="fragment">
+                        There exist data standards for recreational fishing!
+                        <ul>
+                          <li>
+                            NOAA Recreational Fishing Survey and Data Standards [2]
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footnotey">
+            [1] Adams, Damian C., and Donna J. Lee. “Estimating the Value of Invasive Aquatic Plant Control: A Bioeconomic Analysis of 13 Public Lakes in Florida.” Journal of Agricultural and Applied Economics 39, no. s1 (October 2007): 97–109. https://doi.org/10.1017/S1074070800028972.
+            <br>
+            [2] https://www.fisheries.noaa.gov/recreational-fishing-data/recreational-fishing-survey-and-data-standards
+          </div>
+
+        </section><section>
+
+          <div><h4> Economic Impact: DwC? </h4> </div>
+          
+          <div style="margin-top:10px">dwc:RecreationalFishing?</div>
+
+        </section><section>
+
+          <div><h4> Economic Impact: DwC? </h4> </div>
+          
+          <div style="margin-top:10px"><span class="crossout">dwc:RecreationalFishing?</span></div>
+    
+        </section><section>
+
+          <div><h4> Economic Impact: DwC? </h4> </div>
+    
+          <div>dwc:ResourceRelationship?</div>
+
+          <div class="leftyrighty">
+            <div class="lefty">
+              <img class="hvsimg" src="static/dwc_resourcerelationship.png">
+            </div>
+            <div class="righty">
+              <img class="hvsimg" src="static/dwc_resourcerelationship_fields.png">
+            </div>
+          </div>
+          
+          <div class="footnotey">
+            https://dwc.tdwg.org/terms/#resourcerelationship
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                WHERE IS THE RELATED RESOURCE??!!
+              </li>
+            </ul> 
+          </aside>
+          
+        </section><section>
+
+          <div> <h4> Proposal: Expand ResourceRelationship </h4> </div>
+    
+          <div class="texty">
+            <ol>
+              <li class="fragment"> 
+                A URI to find the dataset containing the related resource
+              </li>
+              <li class="fragment"> 
+                A URI to find the data standard/format of the related resource
+              </li>
+              <li class="fragment"> 
+                (nice to have) More transparency and examples to steer users to ResourceRelationship class?
+              </li>
+            </ol>
+          </div>
+
+        </section><section>
+
+          <div> <h4> Conclusions </h4> </div>
+    
+          <div class="texty">
+            <ul>
+              <li class="fragment"> 
+                Organisms do not live in a vacuum separate from their environment
+              </li>
+              <li class="fragment"> 
+                Interactions with and impact on the environment take on many, many forms
+              </li>
+              <li class="fragment"> 
+                DwC can access these many forms by simply providing a way to link the data together
+              </li>
+              <li class="fragment"> 
+                The obvious pathway for this is using the `ResourceRelationship` class, but...
+                <ul>    
+                  <li>
+                    it's not really up to the task as-is, but...
+                  </li>
+                  <li>
+                    it probably could be with pretty minor tweaking
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+                width: "100%",
+                height: "100%",
+                margin: 0.1,
+                minScale: 1,
+                maxScale: 1,
+                hash: true,
+                center: false,
+                controls: false,
+                help: false,
+                pdfSeparateFragments: false,
+                transition: "none",
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true },
+          { src: 'plugin/math/math.js', async: true }
+        ]
+      });
+    </script>
+    <script>
+        var full_drawpad_canvas = document.getElementById("drawer");
+        var full_drawpad = new SignaturePad(full_drawpad_canvas, {penColor: "rgb(255,0,0)"});
+        function drawListener(e) {
+            if (e.code === "KeyC") full_drawpad.clear();
+            if (e.code === "KeyM") $(full_drawpad_canvas).css('z-index', (($(full_drawpad_canvas).css('z-index')/1000+1)%2)*1000)
+        }
+        document.addEventListener('keydown', drawListener);
+        function resizeCanvas() {
+            full_drawpad_canvas.width = full_drawpad_canvas.clientWidth;
+            full_drawpad_canvas.height = full_drawpad_canvas.clientHeight;
+            full_drawpad.clear();
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+    </script>
+  </body>
+</html>
